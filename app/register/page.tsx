@@ -33,6 +33,23 @@ export default async function RegisterPage() {
           Enrollment is limited to {c.maxEnrollment}. Submit the form below and we&apos;ll follow up by email with
           payment instructions to confirm your camper&apos;s spot.
         </p>
+        {c.waiverUrl && (
+          <div className="mt-8 flex flex-col items-start gap-3 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-navy-dark">Camp waiver</h2>
+              <p className="mt-1 text-sm text-navy-light">
+                Every camper needs a signed waiver. Download it, sign it, and bring it to check-in on the first day.
+              </p>
+            </div>
+            <a
+              href={c.waiverUrl}
+              download
+              className="shrink-0 rounded-md bg-navy px-5 py-2.5 font-semibold text-white transition-colors hover:bg-navy-light"
+            >
+              Download waiver (PDF)
+            </a>
+          </div>
+        )}
         <div className="mt-8">
           {formspreeId ? (
             <RegisterForm formspreeId={formspreeId} />

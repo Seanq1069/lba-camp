@@ -33,6 +33,7 @@ export interface Content {
   refundPolicy: string;
   contactEmail: string;
   motto: string;
+  waiverUrl: string | null;
   coaches: Coach[];
   schedule: ScheduleItem[];
 }
@@ -61,6 +62,7 @@ export const FALLBACK: Content = {
     'Full refund up to 14 days before camp; 50% up to 7 days; none within a week.',
   contactEmail: 'info@qathletics.com',
   motto: 'Defend · Compete · Win',
+  waiverUrl: null,
   coaches: [
     {
       name: 'Bobby Quarantillo',
@@ -108,7 +110,7 @@ export async function getContent(): Promise<Content> {
   if (!hasSanity || !client) return FALLBACK;
   try {
     const [settings, coaches, schedule] = await Promise.all([
-      client.fetch(`*[_type == "campSettings"][0]`),
+      client.fetch(`*[_type == "campSettings"][0]{..., "waiverUrl": waiver.asset->url}`),
       client.fetch(`*[_type == "coach"] | order(order asc)`),
       client.fetch(`*[_type == "scheduleItem"] | order(order asc)`),
     ]);
@@ -134,6 +136,7 @@ export async function getContent(): Promise<Content> {
       refundPolicy: s.refundPolicy || FALLBACK.refundPolicy,
       contactEmail: s.contactEmail || FALLBACK.contactEmail,
       motto: s.motto || FALLBACK.motto,
+      waiverUrl: s.waiverUrl || null,
       coaches:
         coaches?.length > 0
           ? coaches.map((c: any) => ({

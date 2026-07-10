@@ -22,6 +22,7 @@ export default defineType({
     defineField({ name: 'bring', title: 'What to bring', type: 'string' }),
     defineField({ name: 'weatherPolicy', title: 'Weather policy', type: 'text', rows: 2 }),
     defineField({ name: 'refundPolicy', title: 'Refund policy', type: 'text', rows: 2 }),
+    defineField({ name: 'waiver', title: 'Waiver document (PDF)', type: 'file', options: { accept: '.pdf' } }),
     defineField({ name: 'contactEmail', title: 'Contact email', type: 'string' }),
     defineField({ name: 'motto', title: 'Footer motto', type: 'string' }),
   ],

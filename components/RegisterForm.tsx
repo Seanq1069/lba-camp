@@ -184,25 +184,6 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
         </select>
       </Field>
 
-      <SectionHeading>Camp Logistics</SectionHeading>
-
-      <Field label="T-shirt size" span2>
-        <select name="Shirt Size" className={inputClass} defaultValue="">
-          <option value="" disabled>
-            Select one
-          </option>
-          <option>Youth S</option>
-          <option>Youth M</option>
-          <option>Youth L</option>
-          <option>Adult S</option>
-          <option>Adult M</option>
-          <option>Adult L</option>
-        </select>
-      </Field>
-      <Field label="Allergies, medical notes or anything we should know" span2>
-        <textarea name="Notes" rows={3} className={inputClass} placeholder="Optional" />
-      </Field>
-
       <div className="sm:col-span-2">
         <button
           type="submit"
