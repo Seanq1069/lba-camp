@@ -46,7 +46,8 @@ export default async function RegisterPage() {
             </div>
             <a
               href={c.waiverUrl}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="shrink-0 rounded-md bg-navy px-5 py-2.5 font-semibold text-white transition-colors hover:bg-navy-light"
             >
               Download waiver (PDF)
