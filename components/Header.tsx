@@ -15,7 +15,7 @@ export default function Header({ content: c }: { content: Content }) {
           </div>
         </div>
         <a
-          href="#register"
+          href="/register"
           className="rounded-md bg-brick px-4 py-2 text-sm font-semibold hover:bg-brick-dark transition-colors"
         >
           Register Now

@@ -1,0 +1,58 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { getContent } from '@/lib/content';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import RegisterForm from '@/components/RegisterForm';
+
+export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Register | Leesburg Baseball Academy Camp',
+  description:
+    'Register your camper for the Leesburg Baseball Academy Camp, brought to you by Q Athletics.',
+};
+
+export default async function RegisterPage() {
+  const c = await getContent();
+  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || '';
+
+  return (
+    <main className="bg-cream">
+      <Header content={c} />
+      <div className="mx-auto max-w-3xl px-4 py-12">
+        <Link href="/" className="text-sm font-semibold text-brick hover:underline">
+          ← Back to camp info
+        </Link>
+        <p className="mb-2 mt-4 text-sm font-semibold uppercase tracking-widest text-brick">Register</p>
+        <h1 className="text-3xl font-extrabold text-navy-dark md:text-4xl">Camper Registration</h1>
+        <p className="mt-3 text-navy-light">
+          {c.dates} · {c.location} · Ages {c.ages.split('(')[0].trim()} · {c.tuition}
+        </p>
+        <p className="mt-2 text-navy-light">
+          Enrollment is limited to {c.maxEnrollment}. Submit the form below and we&apos;ll follow up by email with
+          payment instructions to confirm your camper&apos;s spot.
+        </p>
+        <div className="mt-8">
+          {formspreeId ? (
+            <RegisterForm formspreeId={formspreeId} />
+          ) : (
+            <a
+              href={`mailto:${c.contactEmail}?subject=LBA%20Camp%20Registration`}
+              className="inline-block rounded-md bg-brick px-6 py-3 font-semibold text-white transition-colors hover:bg-brick-dark"
+            >
+              Email us to register
+            </a>
+          )}
+        </div>
+        <p className="mt-6 text-sm text-navy-light">
+          Questions?{' '}
+          <a href={`mailto:${c.contactEmail}`} className="underline hover:text-navy-dark">
+            {c.contactEmail}
+          </a>
+        </p>
+      </div>
+      <Footer content={c} />
+    </main>
+  );
+}

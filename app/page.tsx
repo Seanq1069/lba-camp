@@ -14,7 +14,7 @@ export default async function Home() {
       <Header content={c} />
       <Hero content={c} />
       <Sections content={c} />
-      <RegisterSection content={c} formspreeId={process.env.NEXT_PUBLIC_FORMSPREE_ID || ''} />
+      <RegisterSection content={c} />
       <Footer content={c} />
     </main>
   );

@@ -35,7 +35,7 @@ export default function Hero({ content: c }: { content: Content }) {
         </dl>
 
         <div className="mt-8 flex flex-wrap gap-4">
-          <a href="#register" className="rounded-md bg-brick px-6 py-3 font-semibold hover:bg-brick-dark transition-colors">
+          <a href="/register" className="rounded-md bg-brick px-6 py-3 font-semibold hover:bg-brick-dark transition-colors">
             Register Now
           </a>
           <a href="#details" className="rounded-md border border-white/40 px-6 py-3 font-semibold hover:bg-white/10 transition-colors">

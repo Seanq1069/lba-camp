@@ -3,7 +3,47 @@
 import { useState } from 'react';
 
 const inputClass =
-  'w-full rounded-md border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder-white/40 focus:border-brick focus:outline-none';
+  'w-full rounded-md border border-navy/20 bg-white px-4 py-2.5 text-navy-dark placeholder-navy/40 focus:border-brick focus:outline-none';
+
+const POSITIONS = [
+  'Pitcher',
+  'Catcher',
+  'First Base',
+  'Second Base',
+  'Third Base',
+  'Shortstop',
+  'Outfield',
+  'Utility / Not sure',
+];
+
+function Field({
+  label,
+  required,
+  children,
+  span2,
+}: {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+  span2?: boolean;
+}) {
+  return (
+    <div className={span2 ? 'sm:col-span-2' : ''}>
+      <label className="mb-1 block text-sm font-semibold text-navy-dark">
+        {label} {required && <span className="text-brick">*</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mt-2 border-b border-navy/10 pb-2 text-lg font-bold text-navy sm:col-span-2">
+      {children}
+    </h3>
+  );
+}
 
 export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -26,9 +66,9 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
 
   if (status === 'success') {
     return (
-      <div className="rounded-xl bg-white/10 p-8 text-center">
-        <p className="text-2xl font-bold">Registration received! ⚾</p>
-        <p className="mt-2 text-white/80">
+      <div className="rounded-xl border border-navy/10 bg-white p-8 text-center shadow-sm">
+        <p className="text-2xl font-bold text-navy">Registration received! ⚾</p>
+        <p className="mt-2 text-navy-light">
           Thanks for signing up. We&apos;ll email you shortly with payment instructions to confirm your camper&apos;s
           spot.
         </p>
@@ -37,41 +77,116 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Parent / guardian name *</label>
+    <form
+      onSubmit={handleSubmit}
+      className="grid gap-4 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:grid-cols-2 sm:p-8"
+    >
+      <SectionHeading>Parent / Guardian Information</SectionHeading>
+
+      <Field label="Parent/guardian full name" required>
         <input name="Parent Name" required className={inputClass} placeholder="Full name" />
-      </div>
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Email *</label>
+      </Field>
+      <Field label="Email address" required>
         <input name="email" type="email" required className={inputClass} placeholder="you@example.com" />
-      </div>
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Phone *</label>
-        <input name="Phone" type="tel" required className={inputClass} placeholder="(555) 555-5555" />
-      </div>
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Camper name *</label>
+      </Field>
+      <Field label="Mobile phone number" required>
+        <input name="Mobile Phone" type="tel" required className={inputClass} placeholder="(555) 555-5555" />
+      </Field>
+      <Field label="Preferred contact method" required>
+        <select name="Preferred Contact Method" required className={inputClass} defaultValue="">
+          <option value="" disabled>
+            Select one
+          </option>
+          <option>Email</option>
+          <option>Call</option>
+          <option>Text</option>
+        </select>
+      </Field>
+      <Field label="Home address" required span2>
+        <input name="Home Address" required className={inputClass} placeholder="Street, city, state, ZIP" />
+      </Field>
+      <Field label="Second parent/guardian name">
+        <input name="Second Parent Name" className={inputClass} placeholder="Optional" />
+      </Field>
+      <Field label="Second phone number">
+        <input name="Second Phone" type="tel" className={inputClass} placeholder="Optional" />
+      </Field>
+
+      <SectionHeading>Camper Information</SectionHeading>
+
+      <Field label="Camper full name" required>
         <input name="Camper Name" required className={inputClass} placeholder="Camper's full name" />
-      </div>
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Camper age *</label>
-        <input name="Camper Age" type="number" min={7} max={16} required className={inputClass} placeholder="9–14" />
-      </div>
-      <div>
-        <label className="mb-1 block text-sm font-semibold">Experience level</label>
-        <select name="Experience Level" className={inputClass} defaultValue="">
+      </Field>
+      <Field label="Date of birth" required>
+        <input name="Camper Date of Birth" type="date" required className={inputClass} />
+      </Field>
+      <Field label="Age at start of camp" required>
+        <input name="Age at Start of Camp" type="number" min={7} max={16} required className={inputClass} placeholder="9–14" />
+      </Field>
+      <Field label="Current grade" required>
+        <input name="Current Grade" required className={inputClass} placeholder="e.g., 5th" />
+      </Field>
+
+      <SectionHeading>Baseball Background</SectionHeading>
+
+      <Field label="Primary position">
+        <select name="Primary Position" className={inputClass} defaultValue="">
+          <option value="" disabled>
+            Select one
+          </option>
+          {POSITIONS.map((p) => (
+            <option key={p}>{p}</option>
+          ))}
+        </select>
+      </Field>
+      <Field label="Secondary position">
+        <select name="Secondary Position" className={inputClass} defaultValue="">
+          <option value="" disabled>
+            Select one
+          </option>
+          <option>None</option>
+          {POSITIONS.map((p) => (
+            <option key={p}>{p}</option>
+          ))}
+        </select>
+      </Field>
+      <Field label="Years of baseball experience">
+        <input name="Years of Experience" type="number" min={0} max={12} className={inputClass} placeholder="e.g., 3" />
+      </Field>
+      <Field label="Playing level">
+        <select name="Playing Level" className={inputClass} defaultValue="">
           <option value="" disabled>
             Select one
           </option>
           <option>Beginner</option>
-          <option>Rec league</option>
-          <option>Travel / club</option>
-          <option>School team</option>
+          <option>Recreation league</option>
+          <option>Travel baseball</option>
+          <option>Other</option>
         </select>
-      </div>
-      <div className="sm:col-span-2">
-        <label className="mb-1 block text-sm font-semibold">T-shirt size</label>
+      </Field>
+      <Field label="Bats">
+        <select name="Bats" className={inputClass} defaultValue="">
+          <option value="" disabled>
+            Select one
+          </option>
+          <option>Right</option>
+          <option>Left</option>
+          <option>Switch</option>
+        </select>
+      </Field>
+      <Field label="Throws">
+        <select name="Throws" className={inputClass} defaultValue="">
+          <option value="" disabled>
+            Select one
+          </option>
+          <option>Right</option>
+          <option>Left</option>
+        </select>
+      </Field>
+
+      <SectionHeading>Camp Logistics</SectionHeading>
+
+      <Field label="T-shirt size" span2>
         <select name="Shirt Size" className={inputClass} defaultValue="">
           <option value="" disabled>
             Select one
@@ -83,23 +198,21 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
           <option>Adult M</option>
           <option>Adult L</option>
         </select>
-      </div>
-      <div className="sm:col-span-2">
-        <label className="mb-1 block text-sm font-semibold">
-          Allergies, medical notes or anything we should know
-        </label>
+      </Field>
+      <Field label="Allergies, medical notes or anything we should know" span2>
         <textarea name="Notes" rows={3} className={inputClass} placeholder="Optional" />
-      </div>
+      </Field>
+
       <div className="sm:col-span-2">
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="w-full rounded-md bg-brick px-6 py-3 font-semibold hover:bg-brick-dark transition-colors disabled:opacity-60 sm:w-auto"
+          className="w-full rounded-md bg-brick px-6 py-3 font-semibold text-white transition-colors hover:bg-brick-dark disabled:opacity-60 sm:w-auto"
         >
           {status === 'submitting' ? 'Submitting…' : 'Submit Registration'}
         </button>
         {status === 'error' && (
-          <p className="mt-2 text-sm text-red-300">Something went wrong — please try again or email us directly.</p>
+          <p className="mt-2 text-sm text-brick">Something went wrong — please try again or email us directly.</p>
         )}
       </div>
     </form>

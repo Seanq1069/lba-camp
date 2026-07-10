@@ -128,7 +128,7 @@ export default function Sections({ content: c }: { content: Content }) {
               ratio.
             </p>
             <a
-              href="#register"
+              href="/register"
               className="mt-6 inline-block rounded-md bg-brick px-6 py-3 font-semibold hover:bg-brick-dark transition-colors"
             >
               Register Now
