@@ -20,6 +20,14 @@ export default function Hero({ content: c }: { content: Content }) {
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-white/85">{c.subheadline}</p>
 
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 py-1.5 pl-1.5 pr-4">
+          {c.qLogoUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={c.qLogoUrl} alt="Q Athletics" className="h-8 w-8 rounded-full bg-white object-contain p-1" />
+          )}
+          <span className="text-sm font-semibold text-white/85">Sponsored by Q Athletics</span>
+        </div>
+
         <dl className="mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
           {[
             ['Dates', c.dates],

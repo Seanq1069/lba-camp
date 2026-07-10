@@ -7,11 +7,11 @@ export default function Header({ content: c }: { content: Content }) {
         <div className="flex items-center gap-3">
           {c.lbaLogoUrl && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={c.lbaLogoUrl} alt="Leesburg Baseball Academy" className="h-10 w-10 rounded-full object-cover" />
+            <img src={c.lbaLogoUrl} alt="Leesburg Baseball Academy" className="h-11 w-11 rounded-full object-cover" />
           )}
           <div className="leading-tight">
             <p className="font-bold">Leesburg Baseball Academy</p>
-            <p className="text-xs text-white/70">× {c.presentedBy}</p>
+            <p className="text-xs text-white/70">Sponsored by Q Athletics</p>
           </div>
         </div>
         <a
