@@ -60,7 +60,7 @@ export const FALLBACK: Content = {
     'Camp runs rain or shine; severe weather delays communicated by email.',
   refundPolicy:
     'Full refund up to 14 days before camp; 50% up to 7 days; none within a week.',
-  contactEmail: 'info@qathletics.com',
+  contactEmail: 'leesburgbaseballacademy@gmail.com',
   motto: 'Defend · Compete · Win',
   waiverUrl: null,
   coaches: [

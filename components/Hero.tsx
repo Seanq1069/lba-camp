@@ -25,7 +25,7 @@ export default function Hero({ content: c }: { content: Content }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={c.qLogoUrl} alt="Q Athletics" className="h-8 w-8 rounded-full bg-white object-contain p-1" />
           )}
-          <span className="text-sm font-semibold text-white/85">Sponsored by Q Athletics</span>
+          <span className="text-sm font-semibold text-white/85">Brought to you by Q Athletics</span>
         </div>
 
         <dl className="mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">

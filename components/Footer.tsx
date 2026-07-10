@@ -14,7 +14,7 @@ export default function Footer({ content: c }: { content: Content }) {
         )}
       </div>
       <p className="text-sm text-white/70">
-        Presented by Leesburg Baseball Academy · Sponsored by Q Athletics
+        Presented by Leesburg Baseball Academy · Brought to you by Q Athletics
       </p>
       <p className="mt-1 text-sm text-white/70">© {new Date().getFullYear()} Leesburg Baseball Academy</p>
       <p className="mt-2 text-sm font-semibold tracking-widest text-brick">{c.motto}</p>
