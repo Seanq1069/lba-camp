@@ -8,7 +8,7 @@ import { schemaTypes } from './sanity/schemaTypes';
 
 export default defineConfig({
   basePath: '/studio',
-  title: 'Loudoun Baseball Academy',
+  title: 'Leesburg Baseball Academy',
   projectId: projectId || 'placeholder',
   dataset,
   plugins: [structureTool(), visionTool()],

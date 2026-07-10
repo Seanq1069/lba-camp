@@ -14,7 +14,7 @@ export default function Footer({ content: c }: { content: Content }) {
         )}
       </div>
       <p className="text-sm text-white/70">
-        © {new Date().getFullYear()} Loudoun Baseball Academy · {c.presentedBy}
+        © {new Date().getFullYear()} Leesburg Baseball Academy · {c.presentedBy}
       </p>
       <p className="mt-1 text-sm font-semibold tracking-widest text-brick">{c.motto}</p>
     </footer>

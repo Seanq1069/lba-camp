@@ -1,4 +1,4 @@
-# Loudoun Baseball Academy Camp — Website
+# Leesburg Baseball Academy Camp — Website
 
 Marketing + registration site for the LBA camp, presented by Q Athletics.
 

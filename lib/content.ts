@@ -38,7 +38,7 @@ export interface Content {
 }
 
 export const FALLBACK: Content = {
-  campName: 'Loudoun Baseball Academy Camp',
+  campName: 'Leesburg Baseball Academy Camp',
   presentedBy: 'Q Athletics',
   headline: 'Develop the Skills. Understand the Game. Compete with Confidence.',
   subheadline:
