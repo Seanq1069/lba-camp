@@ -1,0 +1,29 @@
+import { defineField, defineType } from 'sanity';
+
+export default defineType({
+  name: 'campSettings',
+  title: 'Camp Settings',
+  type: 'document',
+  fields: [
+    defineField({ name: 'campName', title: 'Camp name', type: 'string' }),
+    defineField({ name: 'presentedBy', title: 'Presented by', type: 'string' }),
+    defineField({ name: 'headline', title: 'Hero headline', type: 'string' }),
+    defineField({ name: 'subheadline', title: 'Hero subheadline', type: 'text', rows: 3 }),
+    defineField({ name: 'heroImage', title: 'Hero image', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'lbaLogo', title: 'LBA logo', type: 'image' }),
+    defineField({ name: 'qLogo', title: 'Q Athletics logo', type: 'image' }),
+    defineField({ name: 'dates', title: 'Dates', type: 'string' }),
+    defineField({ name: 'dailyHours', title: 'Daily hours', type: 'string' }),
+    defineField({ name: 'location', title: 'Location', type: 'string' }),
+    defineField({ name: 'ages', title: 'Ages', type: 'string' }),
+    defineField({ name: 'tuition', title: 'Tuition', type: 'string' }),
+    defineField({ name: 'tuitionIncludes', title: 'Tuition includes', type: 'text', rows: 3 }),
+    defineField({ name: 'maxEnrollment', title: 'Max enrollment', type: 'string' }),
+    defineField({ name: 'bring', title: 'What to bring', type: 'string' }),
+    defineField({ name: 'weatherPolicy', title: 'Weather policy', type: 'text', rows: 2 }),
+    defineField({ name: 'refundPolicy', title: 'Refund policy', type: 'text', rows: 2 }),
+    defineField({ name: 'contactEmail', title: 'Contact email', type: 'string' }),
+    defineField({ name: 'motto', title: 'Footer motto', type: 'string' }),
+  ],
+  preview: { prepare: () => ({ title: 'Camp Settings' }) },
+});
