@@ -9,12 +9,14 @@ export default function Footer({ content: c }: { content: Content }) {
           <img src={c.lbaLogoUrl} alt="Leesburg Baseball Academy" className="h-16 w-16 rounded-full object-cover" />
         )}
         {c.qLogoUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={c.qLogoUrl} alt="Q Athletics" className="h-12 w-12 rounded-full bg-white object-contain p-1" />
+          <a href="https://qathletics.net/" target="_blank" rel="noopener noreferrer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={c.qLogoUrl} alt="Q Athletics" className="h-12 w-12 rounded-full bg-white object-contain p-1" />
+          </a>
         )}
       </div>
       <p className="text-sm text-white/70">
-        Presented by Leesburg Baseball Academy · Brought to you by Q Athletics
+        Presented by Leesburg Baseball Academy · Brought to you by <a href="https://qathletics.net/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Q Athletics</a>
       </p>
       <p className="mt-1 text-sm text-white/70">© {new Date().getFullYear()} Leesburg Baseball Academy</p>
       <p className="mt-2 text-sm font-semibold tracking-widest text-brick">{c.motto}</p>

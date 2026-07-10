@@ -11,7 +11,7 @@ export default function Header({ content: c }: { content: Content }) {
           )}
           <div className="leading-tight">
             <p className="font-bold">Leesburg Baseball Academy</p>
-            <p className="text-xs text-white/70">Brought to you by Q Athletics</p>
+            <a href="https://qathletics.net/" target="_blank" rel="noopener noreferrer" className="text-xs text-white/70 hover:text-white hover:underline">Brought to you by Q Athletics</a>
           </div>
         </div>
         <a
