@@ -30,15 +30,18 @@ export default async function RegisterPage() {
           {c.dates} · {c.location} · Ages {c.ages.split('(')[0].trim()} · {c.tuition}
         </p>
         <p className="mt-2 text-navy-light">
-          Enrollment is limited to {c.maxEnrollment}. Submit the form below and we&apos;ll follow up by email with
-          payment instructions to confirm your camper&apos;s spot.
+          Enrollment is limited to {c.maxEnrollment}. Submit the form below to reserve your camper&apos;s spot.
+        </p>
+        <p className="mt-3 rounded-lg border border-brick/30 bg-brick/5 p-4 text-sm font-semibold text-navy-dark">
+          Important: the signed waiver and payment are both due at the field on the first morning of camp. Campers
+          cannot participate without them.
         </p>
         {c.waiverUrl && (
           <div className="mt-8 flex flex-col items-start gap-3 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-lg font-bold text-navy-dark">Camp waiver</h2>
               <p className="mt-1 text-sm text-navy-light">
-                Every camper needs a signed waiver. Download it, sign it, and bring it to check-in on the first day.
+                Download the waiver, sign it, and bring it with your payment to check-in on the first day — both are required before your camper can take the field.
               </p>
             </div>
             <a

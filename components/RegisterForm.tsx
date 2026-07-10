@@ -69,8 +69,8 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
       <div className="rounded-xl border border-navy/10 bg-white p-8 text-center shadow-sm">
         <p className="text-2xl font-bold text-navy">Registration received! ⚾</p>
         <p className="mt-2 text-navy-light">
-          Thanks for signing up. We&apos;ll email you shortly with payment instructions to confirm your camper&apos;s
-          spot.
+          Thanks for signing up — your spot is reserved. Remember: bring the signed waiver and payment to check-in on
+          the first morning of camp. Campers cannot participate without both.
         </p>
       </div>
     );

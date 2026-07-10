@@ -8,8 +8,8 @@ export default function RegisterSection({ content: c }: { content: Content }) {
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brick">Register</p>
         <h2 className="text-3xl font-extrabold">Secure your spot</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/80">
-          Spots are limited to {c.maxEnrollment}. Registration takes about two minutes — we&apos;ll follow up by
-          email with payment instructions to confirm your camper&apos;s spot.
+          Spots are limited to {c.maxEnrollment}. Registration takes about two minutes. Signed waiver and payment are
+          due at check-in on the first day of camp.
         </p>
         <Link
           href="/register"
