@@ -34,10 +34,8 @@ export default function Sections({ content: c }: { content: Content }) {
       <section className="bg-navy py-16 text-white">
         <div className="mx-auto max-w-6xl px-4">
           <Kicker>The Staff</Kicker>
-          <h2 className="text-3xl font-extrabold">Meet the coaches</h2>
-          <p className="mt-3 max-w-2xl text-white/80">
-            A staff of active college players and career coaches — every camper gets real reps and real feedback.
-          </p>
+          <h2 className="text-3xl font-extrabold">{c.coachesHeading}</h2>
+          <p className="mt-3 max-w-2xl text-white/80">{c.coachesIntro}</p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {c.coaches.map((coach) => (
               <div key={coach.name} className="rounded-xl bg-white/5 p-5">

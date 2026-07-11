@@ -90,6 +90,17 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'coachesHeading',
+      title: 'Coaches section — heading',
+      type: 'string',
+    }),
+    defineField({
+      name: 'coachesIntro',
+      title: 'Coaches section — intro text',
+      type: 'text',
+      rows: 2,
+    }),
     defineField({ name: 'dates', title: 'Dates', type: 'string' }),
     defineField({ name: 'dailyHours', title: 'Daily hours', type: 'string' }),
     defineField({ name: 'location', title: 'Location', type: 'string' }),

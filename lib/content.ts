@@ -26,6 +26,8 @@ export interface Content {
   experienceHeading: string;
   experienceIntro: string;
   experienceCards: { title: string; text: string }[];
+  coachesHeading: string;
+  coachesIntro: string;
   dates: string;
   dailyHours: string;
   location: string;
@@ -64,6 +66,9 @@ export const FALLBACK: Content = {
     { title: 'Skill Development', text: 'Hitting, defense, throwing, baserunning and baseball IQ — all in one camp.' },
     { title: 'Competitive Fun', text: 'Games, challenges and age-appropriate competitions all four days.' },
   ],
+  coachesHeading: 'Meet the coaches',
+  coachesIntro:
+    'A staff of active college players and career coaches — every camper gets real reps and real feedback.',
   dates: 'July 20–23, 2026',
   dailyHours: '8:30 a.m. – 2:00 p.m.',
   location: 'Leesburg, Virginia (field TBA)',
@@ -152,6 +157,8 @@ export async function getContent(): Promise<Content> {
         Array.isArray(s.experienceCards) && s.experienceCards.length > 0
           ? s.experienceCards.map((card: any) => ({ title: card.title || '', text: card.text || '' }))
           : FALLBACK.experienceCards,
+      coachesHeading: s.coachesHeading || FALLBACK.coachesHeading,
+      coachesIntro: s.coachesIntro || FALLBACK.coachesIntro,
       dates: s.dates || FALLBACK.dates,
       dailyHours: s.dailyHours || FALLBACK.dailyHours,
       location: s.location || FALLBACK.location,
