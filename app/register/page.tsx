@@ -68,7 +68,7 @@ export default async function RegisterPage() {
         )}
         <div className="mt-8">
           {!c.registrationOpen ? null : formspreeId ? (
-            <RegisterForm formspreeId={formspreeId} />
+            <RegisterForm formspreeId={formspreeId} agesHint={c.ages.split('(')[0].trim()} />
           ) : (
             <a
               href={`mailto:${c.contactEmail}?subject=LBA%20Camp%20Registration`}

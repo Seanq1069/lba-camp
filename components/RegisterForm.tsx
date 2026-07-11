@@ -45,7 +45,16 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
+export default function RegisterForm({
+  formspreeId,
+  agesHint = '',
+}: {
+  formspreeId: string;
+  agesHint?: string;
+}) {
+  const ageNums = (agesHint.match(/\d+/g) || []).map(Number);
+  const minAge = ageNums.length ? Math.min(...ageNums) : 7;
+  const maxAge = ageNums.length ? Math.max(...ageNums) : 16;
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -121,7 +130,7 @@ export default function RegisterForm({ formspreeId }: { formspreeId: string }) {
         <input name="Camper Date of Birth" type="date" required className={inputClass} />
       </Field>
       <Field label="Age at start of camp" required>
-        <input name="Age at Start of Camp" type="number" min={7} max={16} required className={inputClass} placeholder="9–14" />
+        <input name="Age at Start of Camp" type="number" min={minAge} max={maxAge} required className={inputClass} placeholder={agesHint || `${minAge}–${maxAge}`} />
       </Field>
       <Field label="Current grade" required>
         <input name="Current Grade" required className={inputClass} placeholder="e.g., 5th" />
