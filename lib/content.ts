@@ -36,6 +36,7 @@ export interface Content {
   tuitionIncludes: string;
   maxEnrollment: string;
   bring: string;
+  pickupPolicy: any[];
   weatherPolicy: string;
   refundPolicy: string;
   contactEmail: string;
@@ -46,6 +47,10 @@ export interface Content {
   coaches: Coach[];
   schedule: ScheduleItem[];
 }
+
+const p = (text: string) => ({ _type: 'block', style: 'normal', markDefs: [], children: [{ _type: 'span', text, marks: [] }] });
+const h = (text: string) => ({ _type: 'block', style: 'h3', markDefs: [], children: [{ _type: 'span', text, marks: [] }] });
+const li = (text: string) => ({ _type: 'block', style: 'normal', listItem: 'bullet', level: 1, markDefs: [], children: [{ _type: 'span', text, marks: [] }] });
 
 export const FALLBACK: Content = {
   campName: 'Leesburg Baseball Academy Camp',
@@ -78,6 +83,30 @@ export const FALLBACK: Content = {
     'Includes four days of instruction, a camp T-shirt, daily competitions and a written player-development summary.',
   maxEnrollment: '40 campers',
   bring: 'Glove, bat, helmet, cleats, sneakers, water, sunscreen, lunch',
+  pickupPolicy: [
+    p("The safety and security of every camper is a top priority at Leesburg Baseball Academy Camp. Parents and guardians are asked to follow the procedures below each day."),
+    h("Drop-Off"),
+    p("Campers may be dropped off beginning 15 minutes before the scheduled start of camp. A parent, guardian, or responsible adult must accompany the camper to the designated check-in area and confirm that a camp staff member is present before leaving."),
+    p("Campers should not be left unattended at the field, parking lot, or facility. Camp staff are not responsible for campers who arrive before the designated drop-off time."),
+    p("Parents should notify camp staff at check-in of any health, transportation, or scheduling information that may affect the camper that day."),
+    h("Pick-Up"),
+    p("Campers must be picked up promptly at the scheduled conclusion of camp. All campers will remain with camp staff in the designated pick-up area until released to an authorized adult."),
+    p("Campers will only be released to:"),
+    li("A parent or legal guardian listed on the registration form; or"),
+    li("Another adult specifically identified by the parent or guardian as an authorized pick-up person."),
+    p("Camp staff may request a government-issued photo ID before releasing a camper. Parents should notify camp staff in writing or by contacting the designated camp representative if someone different will be picking up their child."),
+    p("Campers will not be permitted to leave the camp area alone, walk home, ride a bicycle home, or enter a vehicle without approval from camp staff and prior written authorization from a parent or legal guardian."),
+    h("Early Pick-Up"),
+    p("Parents who need to pick up a camper before the scheduled end of camp should notify camp staff in advance whenever possible. The parent or authorized adult must check the camper out directly with a staff member before leaving."),
+    h("Custody and Release Restrictions"),
+    p("Parents or guardians are responsible for informing the camp in writing of any custody arrangements or restrictions concerning who may pick up a camper. Camp staff may request supporting legal documentation when necessary. Without written notice and appropriate documentation, camp staff will release the camper to either parent or legal guardian listed on the registration form."),
+    h("Late Pick-Up"),
+    p("Parents should contact the camp immediately if they expect to be late. A staff member will remain with the camper while reasonable efforts are made to contact the parent, guardian, or emergency contacts listed on the registration form."),
+    p("Repeated or significantly late pick-ups may result in a late fee or dismissal from the camp. If camp staff are unable to reach an authorized adult within a reasonable period, they may contact local authorities to ensure the camper's safety."),
+    h("Parking Lot and Traffic Safety"),
+    p("Parents and guardians must drive slowly, follow posted traffic directions, and use the designated drop-off and pick-up areas. Campers should not cross a parking lot or roadway without adult supervision."),
+    p("By registering a camper, the parent or guardian agrees to follow this policy and ensure that all authorized pick-up individuals understand these requirements."),
+  ],
   weatherPolicy:
     'Camp runs rain or shine; severe weather delays communicated by email.',
   refundPolicy:
@@ -167,6 +196,8 @@ export async function getContent(): Promise<Content> {
       tuitionIncludes: s.tuitionIncludes || FALLBACK.tuitionIncludes,
       maxEnrollment: s.maxEnrollment || FALLBACK.maxEnrollment,
       bring: s.bring || FALLBACK.bring,
+      pickupPolicy:
+        Array.isArray(s.pickupPolicy) && s.pickupPolicy.length > 0 ? s.pickupPolicy : FALLBACK.pickupPolicy,
       weatherPolicy: s.weatherPolicy || FALLBACK.weatherPolicy,
       refundPolicy: s.refundPolicy || FALLBACK.refundPolicy,
       contactEmail: s.contactEmail || FALLBACK.contactEmail,

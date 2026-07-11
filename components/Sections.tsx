@@ -7,6 +7,51 @@ const SKILLS: [string, string[]][] = [
   ['Competition', ['Daily skills competitions', 'Team challenges', 'Situational games', 'Awards on the final day']],
 ];
 
+function PolicyBlocks({ blocks }: { blocks: any[] }) {
+  const out: React.ReactNode[] = [];
+  let bullets: React.ReactNode[] = [];
+  const flush = () => {
+    if (bullets.length) {
+      out.push(
+        <ul key={`ul-${out.length}`} className="mt-2 list-disc space-y-1 pl-6 text-navy-light">
+          {bullets}
+        </ul>
+      );
+      bullets = [];
+    }
+  };
+  blocks.forEach((block, i) => {
+    const text = (block.children || []).map((ch: any, j: number) => {
+      let el: React.ReactNode = ch.text;
+      for (const m of ch.marks || []) {
+        if (m === 'strong') el = <strong key={j}>{el}</strong>;
+        else if (m === 'em') el = <em key={j}>{el}</em>;
+      }
+      return <span key={j}>{el}</span>;
+    });
+    if (block.listItem === 'bullet') {
+      bullets.push(<li key={block._key || i}>{text}</li>);
+      return;
+    }
+    flush();
+    if (block.style === 'h3') {
+      out.push(
+        <h4 key={block._key || i} className="mt-5 text-lg font-bold text-navy-dark">
+          {text}
+        </h4>
+      );
+    } else {
+      out.push(
+        <p key={block._key || i} className="mt-2 text-navy-light">
+          {text}
+        </p>
+      );
+    }
+  });
+  flush();
+  return <>{out}</>;
+}
+
 function Kicker({ children }: { children: React.ReactNode }) {
   return <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brick">{children}</p>;
 }
@@ -141,6 +186,15 @@ export default function Sections({ content: c }: { content: Content }) {
             ))}
           </dl>
         </div>
+
+        <details className="mt-8 rounded-xl border border-navy/10 bg-white shadow-sm">
+          <summary className="cursor-pointer select-none px-6 py-4 text-lg font-bold text-navy-dark hover:text-brick">
+            Camper Pick-Up and Drop-Off Policy
+          </summary>
+          <div className="border-t border-navy/10 px-6 pb-6">
+            <PolicyBlocks blocks={c.pickupPolicy} />
+          </div>
+        </details>
       </section>
     </>
   );

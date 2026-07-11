@@ -109,6 +109,29 @@ export default defineType({
     defineField({ name: 'tuitionIncludes', title: 'Tuition includes', type: 'text', rows: 3 }),
     defineField({ name: 'maxEnrollment', title: 'Max enrollment', type: 'string' }),
     defineField({ name: 'bring', title: 'What to bring', type: 'string' }),
+    defineField({
+      name: 'pickupPolicy',
+      title: 'Camper pick-up & drop-off policy',
+      description: 'Shown in the Camp Details section. Use headings for Drop-Off, Pick-Up, etc.',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Heading', value: 'h3' },
+          ],
+          lists: [{ title: 'Bullet', value: 'bullet' }],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [],
+          },
+        },
+      ],
+    }),
     defineField({ name: 'weatherPolicy', title: 'Weather policy', type: 'text', rows: 2 }),
     defineField({ name: 'refundPolicy', title: 'Refund policy', type: 'text', rows: 2 }),
     defineField({
