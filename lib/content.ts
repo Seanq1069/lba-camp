@@ -34,6 +34,8 @@ export interface Content {
   contactEmail: string;
   motto: string;
   waiverUrl: string | null;
+  registrationOpen: boolean;
+  registrationClosedMessage: string;
   coaches: Coach[];
   schedule: ScheduleItem[];
 }
@@ -63,6 +65,9 @@ export const FALLBACK: Content = {
   contactEmail: 'leesburgbaseballacademy@gmail.com',
   motto: 'Defend · Compete · Win',
   waiverUrl: null,
+  registrationOpen: true,
+  registrationClosedMessage:
+    'Camp is full! Registration has closed. Email us to be notified if a spot opens up or when future camps are announced.',
   coaches: [
     {
       name: 'Bobby Quarantillo',
@@ -137,6 +142,8 @@ export async function getContent(): Promise<Content> {
       contactEmail: s.contactEmail || FALLBACK.contactEmail,
       motto: s.motto || FALLBACK.motto,
       waiverUrl: s.waiverUrl || null,
+      registrationOpen: s.registrationOpen !== false,
+      registrationClosedMessage: s.registrationClosedMessage || FALLBACK.registrationClosedMessage,
       coaches:
         coaches?.length > 0
           ? coaches.map((c: any) => ({

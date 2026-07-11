@@ -36,7 +36,19 @@ export default async function RegisterPage() {
           Important: the signed waiver and payment are both due at the field on the first morning of camp. Campers
           cannot participate without them.
         </p>
-        {c.waiverUrl && (
+        {!c.registrationOpen && (
+          <div className="mt-8 rounded-xl border border-navy/10 bg-white p-8 text-center shadow-sm">
+            <p className="text-2xl font-bold text-navy">Registration is closed</p>
+            <p className="mx-auto mt-2 max-w-lg text-navy-light">{c.registrationClosedMessage}</p>
+            <a
+              href={`mailto:${c.contactEmail}?subject=LBA%20Camp%20Waitlist`}
+              className="mt-5 inline-block rounded-md bg-brick px-6 py-3 font-semibold text-white transition-colors hover:bg-brick-dark"
+            >
+              Email us
+            </a>
+          </div>
+        )}
+        {c.registrationOpen && c.waiverUrl && (
           <div className="mt-8 flex flex-col items-start gap-3 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-lg font-bold text-navy-dark">Camp waiver</h2>
@@ -55,7 +67,7 @@ export default async function RegisterPage() {
           </div>
         )}
         <div className="mt-8">
-          {formspreeId ? (
+          {!c.registrationOpen ? null : formspreeId ? (
             <RegisterForm formspreeId={formspreeId} />
           ) : (
             <a
