@@ -15,7 +15,7 @@ export default function Hero({ content: c }: { content: Content }) {
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brick">
           {c.campName}
         </p>
-        <h1 className="max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">
+        <h1 className="max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl" style={{ color: c.headlineColor }}>
           {c.headline}
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-white/85">{c.subheadline}</p>

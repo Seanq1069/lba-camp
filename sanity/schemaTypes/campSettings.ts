@@ -9,6 +9,22 @@ export default defineType({
     defineField({ name: 'presentedBy', title: 'Presented by', type: 'string' }),
     defineField({ name: 'headline', title: 'Hero headline', type: 'string' }),
     defineField({ name: 'subheadline', title: 'Hero subheadline', type: 'text', rows: 3 }),
+    defineField({
+      name: 'headlineColor',
+      title: 'Hero headline color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'White (default)', value: '#ffffff' },
+          { title: 'Brick Red', value: '#c94a5a' },
+          { title: 'Gold', value: '#e8c15a' },
+          { title: 'Cream', value: '#f7f5f0' },
+          { title: 'Light Blue', value: '#9db8e8' },
+        ],
+        layout: 'dropdown',
+      },
+      initialValue: '#ffffff',
+    }),
     defineField({ name: 'heroImage', title: 'Hero image', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'lbaLogo', title: 'LBA logo', type: 'image' }),
     defineField({ name: 'qLogo', title: 'Q Athletics logo', type: 'image' }),

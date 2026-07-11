@@ -19,6 +19,7 @@ export interface Content {
   headline: string;
   subheadline: string;
   heroImageUrl: string | null;
+  headlineColor: string;
   lbaLogoUrl: string | null;
   qLogoUrl: string | null;
   dates: string;
@@ -47,6 +48,7 @@ export const FALLBACK: Content = {
   subheadline:
     'Train with accomplished college and high-level baseball players in a focused, energetic camp built to develop skills, baseball IQ and competitive confidence.',
   heroImageUrl: null,
+  headlineColor: '#ffffff',
   lbaLogoUrl: null,
   qLogoUrl: null,
   dates: 'July 20–23, 2026',
@@ -127,6 +129,7 @@ export async function getContent(): Promise<Content> {
       headline: s.headline || FALLBACK.headline,
       subheadline: s.subheadline || FALLBACK.subheadline,
       heroImageUrl: urlFor(s.heroImage),
+      headlineColor: s.headlineColor || FALLBACK.headlineColor,
       lbaLogoUrl: urlFor(s.lbaLogo),
       qLogoUrl: urlFor(s.qLogo),
       dates: s.dates || FALLBACK.dates,
