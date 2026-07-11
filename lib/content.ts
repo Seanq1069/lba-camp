@@ -142,7 +142,7 @@ export async function getContent(): Promise<Content> {
       contactEmail: s.contactEmail || FALLBACK.contactEmail,
       motto: s.motto || FALLBACK.motto,
       waiverUrl: s.waiverUrl || null,
-      registrationOpen: s.registrationOpen !== false,
+      registrationOpen: s.registrationStatus ? s.registrationStatus !== 'closed' : s.registrationOpen !== false,
       registrationClosedMessage: s.registrationClosedMessage || FALLBACK.registrationClosedMessage,
       coaches:
         coaches?.length > 0

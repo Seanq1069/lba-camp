@@ -23,11 +23,18 @@ export default defineType({
     defineField({ name: 'weatherPolicy', title: 'Weather policy', type: 'text', rows: 2 }),
     defineField({ name: 'refundPolicy', title: 'Refund policy', type: 'text', rows: 2 }),
     defineField({
-      name: 'registrationOpen',
-      title: 'Registration open',
-      description: 'Turn OFF when camp is full — the registration form is replaced by the closed message below.',
-      type: 'boolean',
-      initialValue: true,
+      name: 'registrationStatus',
+      title: 'Registration status',
+      description: 'Set to Closed when camp is full — the registration form is replaced by the closed message below.',
+      type: 'string',
+      options: {
+        list: [
+          { title: '🟢 OPEN — accepting registrations', value: 'open' },
+          { title: '🔴 CLOSED — camp is full', value: 'closed' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'open',
     }),
     defineField({
       name: 'registrationClosedMessage',
