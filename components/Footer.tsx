@@ -3,15 +3,15 @@ import type { Content } from '@/lib/content';
 export default function Footer({ content: c }: { content: Content }) {
   return (
     <footer className="bg-navy-dark py-10 text-center text-white">
-      <div className="mb-4 flex items-end justify-center gap-5">
+      <div className="mb-4 flex items-center justify-center gap-5">
         {c.lbaLogoUrl && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={c.lbaLogoUrl} alt="Leesburg Baseball Academy" className="h-16 w-16 rounded-full object-cover" />
+          <img src={c.lbaLogoUrl} alt="Leesburg Baseball Academy" className="h-14 w-14 rounded-full object-cover" />
         )}
         {c.qLogoUrl && (
           <a href="https://qathletics.net/" target="_blank" rel="noopener noreferrer">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={c.qLogoUrl} alt="Q Athletics" className="h-12 w-12 rounded-full bg-white object-contain p-1" />
+            <img src={c.qLogoUrl} alt="Q Athletics" className="h-14 w-14 rounded-full bg-white object-contain p-1" />
           </a>
         )}
       </div>
