@@ -17,6 +17,7 @@ export interface Content {
   campName: string;
   presentedBy: string;
   headline: string;
+  headlineRich: any[] | null;
   subheadline: string;
   heroImageUrl: string | null;
   headlineColor: string;
@@ -45,6 +46,7 @@ export const FALLBACK: Content = {
   campName: 'Leesburg Baseball Academy Camp',
   presentedBy: 'Q Athletics',
   headline: 'Develop the Skills. Understand the Game. Compete with Confidence.',
+  headlineRich: null,
   subheadline:
     'Train with accomplished college and high-level baseball players in a focused, energetic camp built to develop skills, baseball IQ and competitive confidence.',
   heroImageUrl: null,
@@ -127,6 +129,7 @@ export async function getContent(): Promise<Content> {
       campName: s.campName || FALLBACK.campName,
       presentedBy: s.presentedBy || FALLBACK.presentedBy,
       headline: s.headline || FALLBACK.headline,
+      headlineRich: Array.isArray(s.headlineRich) && s.headlineRich.length > 0 ? s.headlineRich : null,
       subheadline: s.subheadline || FALLBACK.subheadline,
       heroImageUrl: urlFor(s.heroImage),
       headlineColor: s.headlineColor || FALLBACK.headlineColor,

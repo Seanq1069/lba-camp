@@ -1,4 +1,13 @@
+import React from 'react';
 import { defineField, defineType } from 'sanity';
+
+const colorMark = (title: string, value: string, color: string) => ({
+  title,
+  value,
+  icon: () => React.createElement('span', { style: { color, fontWeight: 700 } }, 'A'),
+  component: (props: { children: React.ReactNode }) =>
+    React.createElement('span', { style: { color } }, props.children),
+});
 
 export default defineType({
   name: 'campSettings',
@@ -8,6 +17,32 @@ export default defineType({
     defineField({ name: 'campName', title: 'Camp name', type: 'string' }),
     defineField({ name: 'presentedBy', title: 'Presented by', type: 'string' }),
     defineField({ name: 'headline', title: 'Hero headline', type: 'string' }),
+    defineField({
+      name: 'headlineRich',
+      title: 'Hero headline (rich text)',
+      description:
+        'If filled in, this replaces the plain headline above. Select any word to make it bold, italic, or a different color.',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              colorMark('Brick Red', 'brick', '#c94a5a'),
+              colorMark('Gold', 'gold', '#e8c15a'),
+              colorMark('Light Blue', 'lightblue', '#9db8e8'),
+              colorMark('Navy', 'navy', '#25407a'),
+              colorMark('Light Grey', 'lightgrey', '#c8ccd4'),
+            ],
+            annotations: [],
+          },
+        },
+      ],
+    }),
     defineField({ name: 'subheadline', title: 'Hero subheadline', type: 'text', rows: 3 }),
     defineField({
       name: 'headlineColor',
@@ -20,6 +55,7 @@ export default defineType({
           { title: 'Gold', value: '#e8c15a' },
           { title: 'Cream', value: '#f7f5f0' },
           { title: 'Light Blue', value: '#9db8e8' },
+          { title: 'Light Grey', value: '#c8ccd4' },
         ],
         layout: 'dropdown',
       },

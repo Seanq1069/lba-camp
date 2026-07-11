@@ -1,5 +1,34 @@
 import type { Content } from '@/lib/content';
 
+const COLOR_MARKS: Record<string, string> = {
+  brick: '#c94a5a',
+  gold: '#e8c15a',
+  lightblue: '#9db8e8',
+  navy: '#25407a',
+  lightgrey: '#c8ccd4',
+};
+
+function RichHeadline({ blocks }: { blocks: any[] }) {
+  return (
+    <>
+      {blocks.map((block, i) => (
+        <span key={block._key || i}>
+          {i > 0 && <br />}
+          {(block.children || []).map((child: any, j: number) => {
+            let el: React.ReactNode = child.text;
+            for (const m of child.marks || []) {
+              if (m === 'strong') el = <strong>{el}</strong>;
+              else if (m === 'em') el = <em>{el}</em>;
+              else if (COLOR_MARKS[m]) el = <span style={{ color: COLOR_MARKS[m] }}>{el}</span>;
+            }
+            return <span key={child._key || j}>{el}</span>;
+          })}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function Hero({ content: c }: { content: Content }) {
   return (
     <section className="relative overflow-hidden bg-navy-dark text-white">
@@ -16,7 +45,7 @@ export default function Hero({ content: c }: { content: Content }) {
           {c.campName}
         </p>
         <h1 className="max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl" style={{ color: c.headlineColor }}>
-          {c.headline}
+          {c.headlineRich ? <RichHeadline blocks={c.headlineRich} /> : c.headline}
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-white/85">{c.subheadline}</p>
 
