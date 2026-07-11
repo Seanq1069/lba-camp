@@ -23,6 +23,9 @@ export interface Content {
   headlineColor: string;
   lbaLogoUrl: string | null;
   qLogoUrl: string | null;
+  experienceHeading: string;
+  experienceIntro: string;
+  experienceCards: { title: string; text: string }[];
   dates: string;
   dailyHours: string;
   location: string;
@@ -53,6 +56,14 @@ export const FALLBACK: Content = {
   headlineColor: '#ffffff',
   lbaLogoUrl: null,
   qLogoUrl: null,
+  experienceHeading: 'Four days. High-energy instruction. Real feedback.',
+  experienceIntro:
+    'Small-group coaching, competitive repetitions and individual feedback from experienced players — focused on hitting, fielding, throwing, baserunning and game awareness.',
+  experienceCards: [
+    { title: 'Professional Instruction', text: 'Small-group coaching and individual feedback from college-level players.' },
+    { title: 'Skill Development', text: 'Hitting, defense, throwing, baserunning and baseball IQ — all in one camp.' },
+    { title: 'Competitive Fun', text: 'Games, challenges and age-appropriate competitions all four days.' },
+  ],
   dates: 'July 20–23, 2026',
   dailyHours: '8:30 a.m. – 2:00 p.m.',
   location: 'Leesburg, Virginia (field TBA)',
@@ -135,6 +146,12 @@ export async function getContent(): Promise<Content> {
       headlineColor: s.headlineColor || FALLBACK.headlineColor,
       lbaLogoUrl: urlFor(s.lbaLogo),
       qLogoUrl: urlFor(s.qLogo),
+      experienceHeading: s.experienceHeading || FALLBACK.experienceHeading,
+      experienceIntro: s.experienceIntro || FALLBACK.experienceIntro,
+      experienceCards:
+        Array.isArray(s.experienceCards) && s.experienceCards.length > 0
+          ? s.experienceCards.map((card: any) => ({ title: card.title || '', text: card.text || '' }))
+          : FALLBACK.experienceCards,
       dates: s.dates || FALLBACK.dates,
       dailyHours: s.dailyHours || FALLBACK.dailyHours,
       location: s.location || FALLBACK.location,

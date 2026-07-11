@@ -1,11 +1,5 @@
 import type { Content } from '@/lib/content';
 
-const EXPERIENCE = [
-  { n: '01', title: 'Professional Instruction', text: 'Small-group coaching and individual feedback from college-level players.' },
-  { n: '02', title: 'Skill Development', text: 'Hitting, defense, throwing, baserunning and baseball IQ — all in one camp.' },
-  { n: '03', title: 'Competitive Fun', text: 'Games, challenges and age-appropriate competitions all four days.' },
-];
-
 const SKILLS: [string, string[]][] = [
   ['Hitting', ['Swing fundamentals', 'Tee & front-toss work', 'Situational hitting', 'Bat-speed & exit-velo drills']],
   ['Defense', ['Infield & outfield fundamentals', 'Footwork & throwing mechanics', 'Position-specific instruction', 'Communication & team defense']],
@@ -23,17 +17,14 @@ export default function Sections({ content: c }: { content: Content }) {
       {/* Experience */}
       <section className="mx-auto max-w-6xl px-4 py-16">
         <Kicker>The Experience</Kicker>
-        <h2 className="max-w-2xl text-3xl font-extrabold">Four days. High-energy instruction. Real feedback.</h2>
-        <p className="mt-3 max-w-2xl text-navy-light">
-          Small-group coaching, competitive repetitions and individual feedback from experienced players — focused on
-          hitting, fielding, throwing, baserunning and game awareness.
-        </p>
+        <h2 className="max-w-2xl text-3xl font-extrabold">{c.experienceHeading}</h2>
+        <p className="mt-3 max-w-2xl text-navy-light">{c.experienceIntro}</p>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {EXPERIENCE.map((e) => (
-            <div key={e.n} className="rounded-xl border border-navy/10 bg-white p-6 shadow-sm">
-              <p className="text-sm font-bold text-brick">{e.n}</p>
-              <h3 className="mt-1 text-xl font-bold">{e.title}</h3>
-              <p className="mt-2 text-navy-light">{e.text}</p>
+          {c.experienceCards.map((card, i) => (
+            <div key={card.title + i} className="rounded-xl border border-navy/10 bg-white p-6 shadow-sm">
+              <p className="text-sm font-bold text-brick">{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-1 text-xl font-bold">{card.title}</h3>
+              <p className="mt-2 text-navy-light">{card.text}</p>
             </div>
           ))}
         </div>

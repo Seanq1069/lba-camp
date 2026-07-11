@@ -64,6 +64,32 @@ export default defineType({
     defineField({ name: 'heroImage', title: 'Hero image', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'lbaLogo', title: 'LBA logo', type: 'image' }),
     defineField({ name: 'qLogo', title: 'Q Athletics logo', type: 'image' }),
+    defineField({
+      name: 'experienceHeading',
+      title: 'Experience section — heading',
+      type: 'string',
+    }),
+    defineField({
+      name: 'experienceIntro',
+      title: 'Experience section — intro text',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'experienceCards',
+      title: 'Experience section — cards',
+      description: 'The numbered cards (01, 02, 03…). Add, remove, or reorder freely.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Card title', type: 'string' },
+            { name: 'text', title: 'Card text', type: 'text', rows: 2 },
+          ],
+        },
+      ],
+    }),
     defineField({ name: 'dates', title: 'Dates', type: 'string' }),
     defineField({ name: 'dailyHours', title: 'Daily hours', type: 'string' }),
     defineField({ name: 'location', title: 'Location', type: 'string' }),
